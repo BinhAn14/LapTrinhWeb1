@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>People List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Gender</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="person : ${people}" 
+                    th:classappend="${person.gender == 'male'} ? 'table-primary' : 'table-warning'">
+                    <td th:text="${person.name}"></td>
+                    <td>
+                        <span th:if="${person.gender == 'female'}">🙎🏻‍♀️</span>
+                        <span th:unless="${person.gender == 'female'}">🙎🏻‍♂️</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

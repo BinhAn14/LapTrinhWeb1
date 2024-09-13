@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Users List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Danh sách người dùng</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Tên</th>
+                    <th>Vai trò</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user, iterStat : ${users}">
+                    <td th:text="${iterStat.index + 1}">1</td>
+                    <td th:text="${user.name}">Alice</td>
+                    <td>
+                        <span th:switch="${user.role}">
+                            <span th:case="'admin'">Quản lý hệ thống</span>
+                            <span th:case="'editor'">Duyệt bài</span>
+                            <span th:case="'author'">Tác giả</span>
+                            <span th:case="'user'">Người dùng</span>
+                            <span th:case="*">Chưa xác định</span>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
