@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Travel Form</title>
+</head>
+<body>
+    <h1>Travel Form</h1>
+    
+    <form action="#" th:action="@{/travel}" th:object="${travelRequest}" method="post">
+        
+        <!-- List Box -->
+        <label for="nationality">Nationality</label>
+        <select name="nationality" id="nationality" th:field="*{nationality}">
+            <option value="" disabled>Select a country</option>
+            <option th:each="country : ${countries}"
+                    th:value="${country.code}"
+                    th:text="${country.name}"
+                    th:selected="${country.code == travelRequest.nationality}"></option>
+        </select>
+
+        <br><br>
+        
+        <!-- Check Box -->
+        <label>Tick countries you have visited</label><br>
+        <span th:each="country : ${countries}">
+            <input type="checkbox" name="visitedCountries"
+                   th:value="${country.code}"
+                   th:checked="${travelRequest.visitedCountries != null && #lists.contains(travelRequest.visitedCountries, country.code)}"
+                   id="visitedCountry-[[${country.code}]]">
+            <label th:for="'visitedCountry-' + ${country.code}" th:text="${country.name}"></label><br>
+        </span>
+        
+        <br><br>
+
+        <!-- Radio Box -->
+        <label>Choose one travel type</label><br>
+        <span th:each="travel_type : ${travelTypes}">
+            <input type="radio" name="travelType"
+                   th:value="${travel_type.value}"
+                   th:checked="${travelRequest.travelType != null && travelRequest.travelType.value == travel_type.value}"
+                   id="travelType-[[${travel_type.value}]]">
+            <label th:for="'travelType-' + ${travel_type.value}" th:text="${travel_type.value}"></label><br>
+        </span>
+        
+        <br>
+        
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
