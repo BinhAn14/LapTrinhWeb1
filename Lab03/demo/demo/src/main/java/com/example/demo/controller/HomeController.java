@@ -13,7 +13,7 @@ public class HomeController {
     @GetMapping("/text")
     public String HomeText(Model model){
         System.out.println("Hello IT22A");
-        String name = "Hello St22A";
+        String name = "<h1 style='color:red;'>Hello IT22A</h1>";
         model.addAttribute("namehtml", name);
         return "index";
     }
