@@ -32,7 +32,8 @@ public class UserController {
         return listUsers;
     }
 
-    @GetMapping("/user/{id}")
+@GetMapping("/user/{id}")
+@ResponseBody
         public ResponseEntity<User> getUserById(@PathVariable("id") String id){
             for(User u : listUsers){
                 if(u.getId().equals(id)){
@@ -61,6 +62,7 @@ public class UserController {
    //4. API POST new user
    // CREATE: Thêm một User mới (POST /users)
    @PostMapping("/user")
+   @ResponseBody
    public ResponseEntity<User> createUser(@RequestBody User newuser) {
        listUsers.add(newuser);
        return ResponseEntity.status(201).body(newuser);
@@ -69,6 +71,7 @@ public class UserController {
 
    //5. API PUT user by id
    @PutMapping("/users/{id}")
+   @ResponseBody
    public ResponseEntity<User> updateUser(@PathVariable("id") String userId, @RequestBody User updateUser) {
        for (User user : listUsers) {
            if (user.getId().equals(userId)) {

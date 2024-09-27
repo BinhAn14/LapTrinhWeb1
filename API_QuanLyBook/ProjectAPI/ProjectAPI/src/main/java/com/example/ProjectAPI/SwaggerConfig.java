@@ -1,4 +1,5 @@
-package com.example.Lab05;
+package com.example.ProjectAPI;
+
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import org.springframework.context.annotation.Bean;
