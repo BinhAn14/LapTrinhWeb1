@@ -6,8 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "user")
 public class User {
    @Id
-   //@GeneratedValue(strategy = GenerationType.IDENTITY)
-   // Tự động tạo ID
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
    private int id;
    private String name;
    private String email;
@@ -19,8 +18,6 @@ public class User {
        this.email = email;
    }
 
-
-   // Constructor mặc định (nếu không dùng Lombok)
    public User() {
    }
 

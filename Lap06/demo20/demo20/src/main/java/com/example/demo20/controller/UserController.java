@@ -17,17 +17,15 @@ import java.util.List;
 @Controller
 public class UserController {
 
-
    @Autowired
    private UserService userService;
 
 
-   // Khởi tạo danh sách User
    public UserController() {
    }
 
 
-   // Trả về danh sách User
+
    @GetMapping("/users")
    @ResponseBody
    public List<User> getUserList() {
@@ -35,16 +33,14 @@ public class UserController {
    }
 
 
-   // Trả về một User cụ thể theo ID
-   @GetMapping("/users/{id}")  // Thêm dấu ngoặc kép đóng
+   @GetMapping("/users/{id}")  
    public ResponseEntity<User> getUserById(@PathVariable("id") int userId) {
-    // Không cần @ResponseBody vì ResponseEntity đã bao gồm body
     for (User user : userService.findAll()) {
         if (user.getId() == userId) {
             return ResponseEntity.status(200).body(user);
         }
     }
-    return ResponseEntity.status(404).body(null);  // Trả về lỗi 404 nếu không tìm thấy
+    return ResponseEntity.status(404).body(null);  
 }
 
 
